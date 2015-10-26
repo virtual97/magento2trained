@@ -103,7 +103,6 @@ class ModuleList implements ModuleListInterface
             return [];
         }
         $result = array_keys(array_filter($this->configData));
-        print_r($result);exit;
         return $result;
     }
 
