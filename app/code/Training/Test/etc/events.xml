@@ -5,4 +5,8 @@
                   instance="Training\Test\Model\Observer"
                   method="changeRequestParams" shared="false" />
     </event>
+    <event name="controller_front_send_response_before">
+        <observer name="training_test" instance="Training\Test\Model\Observer"
+                  method="logPageOutput" shared="false" />
+    </event>
 </config>
