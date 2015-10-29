@@ -18,6 +18,7 @@ class Observer {
 
     public function changeRequestParams(\Magento\Framework\Event\Observer $observer)
     {
+        return;
         $request = $observer->getEvent()->getData('request');
         $request->setModuleName('catalog');//
         $request->setControllerName('product');//
