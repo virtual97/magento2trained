@@ -17,4 +17,7 @@
 
     <preference for="Magento\Catalog\Model\Product"
                 type="Training\Test\Model\Testproduct" />
+
+    <preference for="Magento\Framework\App\FrontControllerInterface"
+                type="Training\Test\App\FrontController" />
 </config>
