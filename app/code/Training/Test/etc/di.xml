@@ -33,6 +33,9 @@
     </type>
 
     <!--<preference for="Magento\Catalog\Controller\Product\View"-->
+                <!--type="Training\Test\Controller\Product\View2" />-->
+
+    <!--<preference for="Magento\Catalog\Controller\Product\View"-->
                 <!--type="Training\Test\Controller\Product\View" />-->
 
     <!--<type name="Magento\Catalog\Controller\Product\View">-->
