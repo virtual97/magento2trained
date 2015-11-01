@@ -4,4 +4,7 @@
     <head>
         <title>Training Render Exercise</title>
     </head>
+    <body>
+        <remove name="training.example.first"/>
+    </body>
 </page>
