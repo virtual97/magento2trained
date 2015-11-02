@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Customer\Block\Account\AuthorizationLink */
+?>
+
+<li class="authorization-link">
+    <a href="<?php echo $block->getHref(); ?>">
+        <?php echo $block->escapeHtml($block->getLabel()); ?>
+    </a>
+</li>

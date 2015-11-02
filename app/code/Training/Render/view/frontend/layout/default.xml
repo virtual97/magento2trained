@@ -11,5 +11,9 @@
                 </arguments>
             </block>
         </referenceContainer>
+
+        <referenceBlock name="top.links">
+            <block class="Training\Render\Block\Onecolumn" name="training_onecolumn" template="link.phtml" before="-"/>
+        </referenceBlock>
     </body>
 </page>
