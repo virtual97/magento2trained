@@ -65,6 +65,20 @@ class UpgradeData implements UpgradeDataInterface
                 ]
             ]);
         }
+
+        if (version_compare($dbVersion, '0.1.2', '<')) {
+            /** @var CategorySetup $catalogSetup */
+            $catalogSetup = $this->catalogSetupFactory->create(['setup' => $setup]);
+            $catalogSetup->updateAttribute(
+                Product::ENTITY,
+                'example_multiselect',
+                [
+                    'frontend_model' =>
+                        \Training\Orm\Entity\Attribute\Frontend\HtmlList::class,
+                    'is_html_allowed_on_front' => 1,
+                ]
+            );
+        }
     }
 
 }
