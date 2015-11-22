@@ -9,6 +9,8 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
 use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Store\Model\StoreManagerInterface as StoreManager;
+use Magento\Customer\Setup\CustomerSetup;
+use Magento\Customer\Setup\CustomerSetupFactory;
 
 class UpgradeData implements UpgradeDataInterface
 {
@@ -22,9 +24,11 @@ class UpgradeData implements UpgradeDataInterface
     private $storeManager;
     public function __construct(
         CategorySetupFactory $categorySetupFactory,
+        CustomerSetupFactory $customerSetupFactory,
         StoreManager $storeManager
     ) {
         $this->catalogSetupFactory = $categorySetupFactory;
+        $this->customerSetupFactory = $customerSetupFactory;
         $this->storeManager = $storeManager;
     }
 
@@ -78,6 +82,27 @@ class UpgradeData implements UpgradeDataInterface
                     'is_html_allowed_on_front' => 1,
                 ]
             );
+        }
+
+        if (version_compare($dbVersion, '0.1.3', '<')) {
+            /** @var CustomerSetup $customerSetup */
+            $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+            $customerSetup->addAttribute(
+                \Magento\Customer\Model\Customer::ENTITY,
+                'priority',
+                [
+                    'label' => 'Priority',
+                    'type' => 'int',
+                    'input' => 'select',
+                    'source' => \Training\Orm\Entity\Attribute\Source\CustomerPriority::class,
+                    'required' => 0,
+                    'system' => 0,
+                    'position' => 100
+                ]
+            );
+            $customerSetup->getEavConfig()->getAttribute('customer', 'priority')
+                ->setData('used_in_forms', ['adminhtml_customer'])
+                ->save();
         }
     }
 
